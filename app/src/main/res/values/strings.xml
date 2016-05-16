@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AndroidCookie</string>
+    <string name="title_activity_key_board">KeyBoardActivity</string>
+</resources>
