@@ -2,15 +2,10 @@ package com.example.joez.androidcookie.keyboard;
 
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,11 +20,10 @@ public class KeyBoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_key_board);
-        Toolbar toolbar = new Toolbar(this);
-        toolbar.setTitle(TAG);
-        setSupportActionBar(toolbar);
-        EditText etInfo = (EditText)findViewById(R.id.et_info);
-        TextView tvImportance = (TextView)findViewById(R.id.tv_importance);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        toolbar.setTitle(TAG);
+        ((TextView)findViewById(R.id.tv_toolbar)).setText(TAG);
         mVHolder = findViewById(R.id.v_holder);
         final View decorView = getWindow().getDecorView();
         decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -45,7 +39,7 @@ public class KeyBoardActivity extends AppCompatActivity {
                         int currentKeyboardHeight = decorView.getHeight() - windowVisibleDisplayFrame.bottom;
                         onSoftKeyboardShow(currentKeyboardHeight);
                     }else if(mLastVisibleDecorViewHeight <= visibleDecorViewHeight-MINI_KEY_BOARD_HEIGHT){
-                        int currentKeyboardHeight = decorView.getHeight() - mLastVisibleDecorViewHeight;
+                        int currentKeyboardHeight = visibleDecorViewHeight - mLastVisibleDecorViewHeight;
                         onSoftKeyboardHide(currentKeyboardHeight);
                     }
                 }
@@ -55,14 +49,13 @@ public class KeyBoardActivity extends AppCompatActivity {
     }
 
     private void onSoftKeyboardShow(int height){
-        Log.e(TAG, "onSoftKeyboardShow() called with: " + "height = [" + height + "]");
         mVHolder.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,height));
         mVHolder.setVisibility(View.VISIBLE);
         mVHolder.invalidate();
     }
 
     private void onSoftKeyboardHide(int height){
-        Log.e(TAG, "onSoftKeyboardHide() called with: " + "height = [" + height + "]");
+        mVHolder.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,0));
         mVHolder.setVisibility(View.GONE);
     }
 }
