@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
                 if(holder.getAdapterPosition() == 0) {
                     Intent intent = new Intent(MainActivity.this, KeyBoardActivity.class);
                     startActivity(intent);
+                }else if(holder.getAdapterPosition()==1){
+                    Intent intent = new Intent(MainActivity.this,BitmaskActivity.class);
+                    startActivity(intent);
                 }
             }
 
