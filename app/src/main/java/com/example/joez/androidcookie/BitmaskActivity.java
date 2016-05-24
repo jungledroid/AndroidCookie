@@ -15,7 +15,7 @@ import java.lang.annotation.RetentionPolicy;
 
 public class BitmaskActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "BitmaskActivity";
-    private AnimateController mAnimateController;
+    private AnimateModeController mAnimateController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
         findViewById(R.id.btn_transitonX).setOnClickListener(this);
         findViewById(R.id.btn_mode).setOnClickListener(this);
 
-        mAnimateController = new AnimateController(ivTarget);
+        mAnimateController = new AnimateModeController(ivTarget);
     }
 
     @Override
@@ -49,22 +49,22 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
         v.clearAnimation();
         switch (v.getId()){
             case R.id.btn_rotation:
-                mAnimateController.animateImageByFlag(AnimateController.ROTATION_MASK);
+                mAnimateController.animateImageByFlag(AnimateModeController.ROTATION_MASK);
                 break;
             case R.id.btn_trantionY:
-                mAnimateController.animateImageByFlag(AnimateController.TRANSITIONY_MASK);
+                mAnimateController.animateImageByFlag(AnimateModeController.TRANSITIONY_MASK);
                 break;
             case R.id.btn_transitonX:
-                mAnimateController.animateImageByFlag(AnimateController.TRANSITIONX_MASK);
+                mAnimateController.animateImageByFlag(AnimateModeController.TRANSITIONX_MASK);
                 break;
             case R.id.btn_mode:
-                boolean isSingleMode = mAnimateController.animateImageByFlag(AnimateController.STATE_MODE_SINGLE_MASK);
-                ((Button)v).setText(isSingleMode?"SingleMode":"MultiMode");
+                mAnimateController.animateImageByFlag(AnimateModeController.STATE_MODE_SINGLE_MASK);
+                ((Button)v).setText(mAnimateController.hasStatus(AnimateModeController.STATE_MODE_SINGLE_MASK)?"SingleMode":"MultiMode");
                 break;
         }
     }
 
-    private static class AnimateController{
+    private static class AnimateModeController {
         private int mViewFlag;
         public static final int ROTATION_MASK = 0x1;
         public static final int TRANSITIONY_MASK =0x2;
@@ -73,7 +73,7 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
         public static final int STATE_MODE_SINGLE_MASK =0x8;
         private ViewPropertyAnimatorCompat mViewCompat;
 
-        public AnimateController(View view){
+        public AnimateModeController(View view){
             mViewCompat = ViewCompat.animate(view);
         }
 
@@ -81,10 +81,9 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
         @Retention(RetentionPolicy.SOURCE)
         public @interface AnimateState{}
 
-        private boolean animateImageByFlag(@AnimateState int flag){
-            boolean isSingleMode = hasStatus(STATE_MODE_SINGLE_MASK);
+        private void animateImageByFlag(@AnimateState int flag){
             boolean hasStatus = hasStatus(flag);
-            if(isSingleMode){
+            if(hasStatus(STATE_MODE_SINGLE_MASK)){
                 clearAniamteState();
                 mViewCompat.rotation(0).translationX(0).translationY(0);
             }
@@ -108,7 +107,6 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
                     break;
             }
             mViewCompat.setDuration(500).start();
-            return !isSingleMode;
         }
 
         private boolean hasStatus(int flag){
