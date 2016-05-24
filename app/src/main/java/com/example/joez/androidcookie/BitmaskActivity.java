@@ -21,6 +21,7 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
     private static final String MODE_FILLAFTER="FillAfterMode";
     private AnimateModeController mAnimateController;
     private CheckBox mCbRotation,mCbTransitionY,mCbTransitionX;
+    private Button mBtnRotation,mBtnTransitionY,mBtnTransitonX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +35,12 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setTitle(TAG);
 
-        findViewById(R.id.btn_rotation).setOnClickListener(this);
-        findViewById(R.id.btn_trantionY).setOnClickListener(this);
-        findViewById(R.id.btn_transitonX).setOnClickListener(this);
+        mBtnRotation=(Button) findViewById(R.id.btn_rotation);
+        mBtnRotation.setOnClickListener(this);
+        mBtnTransitionY = (Button)findViewById(R.id.btn_trantionY);
+        mBtnTransitionY.setOnClickListener(this);
+        mBtnTransitonX = (Button)findViewById(R.id.btn_transitonX);
+        mBtnTransitonX.setOnClickListener(this);
         findViewById(R.id.btn_mode).setOnClickListener(this);
         findViewById(R.id.btn_animate).setOnClickListener(this);
         mCbRotation = (CheckBox)findViewById(R.id.cb_rotation);
@@ -50,6 +54,20 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    private void updateViewEnable(boolean isCheckable){
+        if(!isCheckable) {
+            mCbRotation.setChecked(isCheckable);
+            mCbTransitionX.setChecked(isCheckable);
+            mCbTransitionY.setChecked(isCheckable);
+        }
+        mCbRotation.setClickable(isCheckable);
+        mCbTransitionX.setClickable(isCheckable);
+        mCbTransitionY.setClickable(isCheckable);
+        mBtnRotation.setClickable(!isCheckable);
+        mBtnTransitonX.setClickable(!isCheckable);
+        mBtnTransitionY.setClickable(!isCheckable);
     }
 
     @Override
@@ -66,7 +84,7 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
                 mAnimateController.animateImageByFlag(AnimateModeController.TRANSITIONX_MASK);
                 break;
             case R.id.btn_mode:
-                boolean isSingleMode = mAnimateController.hasStatus(AnimateModeController.STATE_MODE_SINGLE_MASK);
+
                 boolean isFillAfterMode = mAnimateController.hasStatus(AnimateModeController.STATE_MODE_FILAFTER_MASK);
                 boolean isCheckable = false;
                 if(isFillAfterMode){
@@ -74,18 +92,12 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
                     mAnimateController.animateWithMode(AnimateModeController.STATE_MODE_SINGLE_MASK);
                     ((Button) v).setText( MODE_SINGLE);
                 }else {
+                    boolean isSingleMode = mAnimateController.hasStatus(AnimateModeController.STATE_MODE_SINGLE_MASK);
                     isCheckable = isSingleMode;
                     mAnimateController.animateWithMode(isSingleMode?AnimateModeController.STATE_MODE_MULTI_MASK:AnimateModeController.STATE_MODE_FILAFTER_MASK);
                     ((Button) v).setText(isSingleMode ?MODE_MULTI:MODE_FILLAFTER);
                 }
-                if(!isCheckable) {
-                    mCbRotation.setChecked(isCheckable);
-                    mCbTransitionX.setChecked(isCheckable);
-                    mCbTransitionY.setChecked(isCheckable);
-                }
-                mCbRotation.setClickable(isCheckable);
-                mCbTransitionX.setClickable(isCheckable);
-                mCbTransitionY.setClickable(isCheckable);
+                updateViewEnable(isCheckable);
                 break;
             case R.id.btn_animate:
                 int flag = 0;
@@ -128,31 +140,33 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
             mViewCompat.rotation(0).translationX(0).translationY(0).setDuration(500).start();
         }
 
+        private void revertRequestFlag(@AnimateState int flag){
+            if(hasStatus(flag)){
+                mViewFlag&=~flag;
+            }else{
+                mViewFlag|=flag;
+            }
+        }
         private void animateImageByFlag(@AnimateState int flag){
-            Log.e(TAG, "animateImageByFlag: flag:"+flag );
             boolean isFilterAfterMode = hasStatus(STATE_MODE_FILAFTER_MASK);
             if(isFilterAfterMode){
-                boolean hasStatus = hasStatus(flag);
-//                if (hasStatus) {
-//                    mViewFlag &= ~flag;
-//                } else {
-                    mViewFlag |= flag;
-//                }
-//                mViewCompat.rotation(0).translationX(0).translationY(0);
+                revertRequestFlag(flag);
+                mViewCompat.rotation(hasStatus(ROTATION_MASK)?30:0)
+                        .translationX(hasStatus(TRANSITIONX_MASK)?200:0)
+                        .translationY(hasStatus(TRANSITIONY_MASK)?200:0);
             }else {
                 clearAnimateState();
                 mViewCompat.rotation(0).translationX(0).translationY(0);
-            }
-            Log.e(TAG, "animateImageByFlag: --requestandroat:-"+requestForState(flag,ROTATION_MASK)+"---flag:"+flag );
-            if((requestForState(flag,ROTATION_MASK))&&hasStatus((~ROTATION_MASK|STATE_MODE_FILAFTER_MASK))||(!isFilterAfterMode&&requestForState(flag,ROTATION_MASK))){
-                mViewCompat.rotation(30);
-            }
-            if((requestForState(flag,TRANSITIONY_MASK))&&hasStatus(~TRANSITIONY_MASK|STATE_MODE_FILAFTER_MASK)||(!isFilterAfterMode&&requestForState(flag,TRANSITIONY_MASK))){
-                mViewCompat.translationY(200);
-            }
+                if(requestForState(flag,ROTATION_MASK)){
+                    mViewCompat.rotation(30);
+                }
+                if(requestForState(flag,TRANSITIONY_MASK)){
+                    mViewCompat.translationY(200);
+                }
 
-            if(requestForState(flag,TRANSITIONX_MASK)&&hasStatus(~TRANSITIONX_MASK|STATE_MODE_FILAFTER_MASK)||(!isFilterAfterMode&&requestForState(flag,TRANSITIONX_MASK))){
-                mViewCompat.translationX(200);
+                if(requestForState(flag,TRANSITIONX_MASK)){
+                    mViewCompat.translationX(200);
+                }
             }
             mViewCompat.setDuration(500).start();
         }
@@ -173,9 +187,6 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
             mViewFlag&=~STATE_MODE_VISIBLE;
         }
 
-        private void setFlag(@AnimateState int flag){
-            mViewFlag|=flag;
-        }
     }
 
 }
