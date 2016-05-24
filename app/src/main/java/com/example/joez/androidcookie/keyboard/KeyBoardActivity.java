@@ -2,13 +2,12 @@ package com.example.joez.androidcookie.keyboard;
 
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import com.example.joez.androidcookie.R;
 
 public class KeyBoardActivity extends AppCompatActivity {
@@ -20,10 +19,13 @@ public class KeyBoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_key_board);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//        toolbar.setTitle(TAG);
-        ((TextView)findViewById(R.id.tv_toolbar)).setText(TAG);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle(TAG);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setTitle(TAG);
         mVHolder = findViewById(R.id.v_holder);
         final View decorView = getWindow().getDecorView();
         decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -48,10 +50,15 @@ public class KeyBoardActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     private void onSoftKeyboardShow(int height){
         mVHolder.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,height));
         mVHolder.setVisibility(View.VISIBLE);
-        mVHolder.invalidate();
     }
 
     private void onSoftKeyboardHide(int height){

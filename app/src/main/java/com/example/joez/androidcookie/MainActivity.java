@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+
 import com.example.joez.androidcookie.keyboard.KeyBoardActivity;
 import com.joez.utils.OnRecyclerItemListener;
 
@@ -12,6 +14,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private RecyclerView mRvCookie;
+
+    @Override
+    public boolean onNavigateUp() {
+        return super.onNavigateUp();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +35,13 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
-        });
 
+            @Override
+            protected void onLongClick(RecyclerView.ViewHolder holder) {
+                super.onLongClick(holder);
+                Log.d(TAG, "onLongClick() called with: " + "holder = [" + holder.getAdapterPosition() + "]"+"---layoutPosition:"+holder.getLayoutPosition());
+            }
+        });
 
     }
 

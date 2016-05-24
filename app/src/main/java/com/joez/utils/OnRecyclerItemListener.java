@@ -34,7 +34,11 @@ public abstract class OnRecyclerItemListener implements RecyclerView.OnItemTouch
 
     }
 
-    public abstract void onItemClick(RecyclerView.ViewHolder holder);
+    protected abstract void onItemClick(RecyclerView.ViewHolder holder);
+
+    protected void onLongClick(RecyclerView.ViewHolder holder){
+
+    }
 
     private class ItemGestureListener extends GestureDetector.SimpleOnGestureListener{
 
@@ -50,7 +54,11 @@ public abstract class OnRecyclerItemListener implements RecyclerView.OnItemTouch
 
         @Override
         public void onLongPress(MotionEvent e) {
-            super.onLongPress(e);
+            View childView = mRecyclerView.findChildViewUnder(e.getX(),e.getY());
+            if(childView != null){
+                RecyclerView.ViewHolder viewHolder = mRecyclerView.getChildViewHolder(childView);
+                onLongClick(viewHolder);
+            }
         }
     }
 }
