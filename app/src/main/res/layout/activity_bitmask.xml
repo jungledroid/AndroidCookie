@@ -30,39 +30,108 @@
 
             <ImageView
                 android:id="@+id/iv_image"
-                android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:background="@drawable/img_cover_recommendation"/>
-
+            <Button
+                android:id="@+id/btn_mode"
+                android:layout_above="@+id/ll_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="MULTIMODE"/>
+            <Button
+                android:id="@+id/btn_animate"
+                android:layout_above="@+id/btn_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="excute"/>
             <LinearLayout
-                android:layout_alignParentBottom="true"
+                android:id="@+id/ll_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:fitsSystemWindows="false"
                 android:gravity="bottom"
-                android:orientation="horizontal">
-                <Button
-                    android:id="@+id/btn_rotation"
-                    android:layout_width="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="rotaion"/>
-                <Button
-                    android:id="@+id/btn_trantionY"
-                    android:layout_width="wrap_content"
+                    android:gravity="bottom"
+                    android:orientation="horizontal"
+                    >
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0px"
+                        android:layout_weight="1"/>
+                    <CheckBox
+                        android:id="@+id/cb_rotation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="rotation"/>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0px"
+                        android:layout_weight="1"/>
+                    <CheckBox
+                        android:id="@+id/cb_tanstionY"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="transitionY"/>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0px"
+                        android:layout_weight="1"/>
+                    <CheckBox
+                        android:id="@+id/cb_transitionX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="transitionX"/>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0px"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="trantionY"/>
-                <Button
-                    android:id="@+id/btn_transitonX"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="trantionX"/>
-
-                <Button
-                    android:id="@+id/btn_mode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MULTIMODE"/>
+                    android:layout_marginTop="30dp"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0px"
+                        android:layout_weight="1"/>
+                    <Button
+                        android:id="@+id/btn_rotation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="rotaion"/>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0px"
+                        android:layout_weight="1"/>
+                    <Button
+                        android:id="@+id/btn_trantionY"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="trantionY"/>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0px"
+                        android:layout_weight="1"/>
+                    <Button
+                        android:id="@+id/btn_transitonX"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="trantionX"/>
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="0px"
+                        android:layout_weight="1"/>
+                </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
-
 
 </android.support.design.widget.CoordinatorLayout>
