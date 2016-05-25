@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -120,11 +119,14 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
         public static final int ROTATION_MASK = 0x1;
         public static final int TRANSITIONY_MASK =0x2;
         public static final int TRANSITIONX_MASK =0x4;
-        private static final int ANIMATE_STATE_MASK=0x7;
+
+        private static final int ANIMATE_CLEAR_MASK =0x7;
+
         public static final int STATE_MODE_SINGLE_MASK =0x8;
         public static final int STATE_MODE_MULTI_MASK =0x0;
         public static final int STATE_MODE_FILAFTER_MASK=0x10;
-        public static final int STATE_MODE_VISIBLE=0x1F;
+
+        public static final int STATE_CLEAR_MASK =0x1F;
         private ViewPropertyAnimatorCompat mViewCompat;
         public AnimateModeController(View view){
             mViewCompat = ViewCompat.animate(view);
@@ -157,34 +159,36 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
             }else {
                 clearAnimateState();
                 mViewCompat.rotation(0).translationX(0).translationY(0);
-                if(requestForState(flag,ROTATION_MASK)){
+                if(requestHasState(flag,ROTATION_MASK)){
                     mViewCompat.rotation(30);
                 }
-                if(requestForState(flag,TRANSITIONY_MASK)){
+                if(requestHasState(flag,TRANSITIONY_MASK)){
                     mViewCompat.translationY(200);
                 }
 
-                if(requestForState(flag,TRANSITIONX_MASK)){
+                if(requestHasState(flag,TRANSITIONX_MASK)){
                     mViewCompat.translationX(200);
                 }
             }
             mViewCompat.setDuration(500).start();
         }
 
-        private boolean requestForState(@AnimateState int request,@AnimateState int targetState){
+
+
+        private boolean requestHasState(@AnimateState int request, @AnimateState int targetState){
             return (request&targetState) != 0;
         }
 
         private boolean hasStatus(@AnimateState int flag){
-            return (mViewFlag&flag)>0;
+            return (mViewFlag&flag)!=0;
         }
 
         private void clearAnimateState(){
-            mViewFlag&=~ANIMATE_STATE_MASK;
+            mViewFlag&=~ANIMATE_CLEAR_MASK;
         }
 
         private void clearAllSate(){
-            mViewFlag&=~STATE_MODE_VISIBLE;
+            mViewFlag&=~STATE_CLEAR_MASK;
         }
 
     }
