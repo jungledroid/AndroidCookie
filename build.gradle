@@ -21,3 +21,9 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+    guavaVersion = '18.0'
+    mockitoVersion = '1.10.19'
+    powerMockito = '1.6.2'
+}

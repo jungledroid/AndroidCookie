@@ -1,4 +1,4 @@
-package com.example.joez.androidcookie;
+package com.joez.ui;
 
 import android.support.v7.app.AppCompatActivity;
 

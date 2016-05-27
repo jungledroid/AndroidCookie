@@ -1,4 +1,4 @@
-package com.example.joez.androidcookie.keyboard;
+package com.joez.ui.keyboard;
 
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -8,7 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
-import com.example.joez.androidcookie.R;
+
+import com.joez.ui.R;
 
 public class KeyBoardActivity extends AppCompatActivity {
     private static final String TAG = "KeyBoardActivity";

@@ -1,4 +1,4 @@
-package com.example.joez.androidcookie;
+package com.joez.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.example.joez.androidcookie.keyboard.KeyBoardActivity;
+import com.joez.ui.keyboard.KeyBoardActivity;
 import com.joez.utils.OnRecyclerItemListener;
 
 public class MainActivity extends AppCompatActivity {

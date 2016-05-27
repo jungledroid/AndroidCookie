@@ -16,6 +16,6 @@
     <color name="lightgrey">#E5E5E5</color>
     <color name="black">#333333</color>
     <color name="line">#D9D9D9</color>
-    <color name="white">#FFFFFF</color>
+    <color name="white">#ccFFFFFF</color>
     <color name="greenstatusbar">#167F7C</color>
 </resources>
