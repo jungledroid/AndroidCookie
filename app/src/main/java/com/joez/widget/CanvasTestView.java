@@ -61,11 +61,21 @@ public class CanvasTestView extends View {
         mRulesBottom = getHeight();
 //        drawLine(canvas);
 //        drawCenter(canvas);
-        drawbackTangle(canvas);
+//        drawbackTangle(canvas);
+        drawClock(canvas);
     }
 
     private void drawClock(Canvas canvas){
-
+        canvas.drawCircle(200,200,200,mLinePaint);
+        for (int i = 0; i <360 ; i+=5) {
+            canvas.save();
+            if(i%6==0) {
+                canvas.rotate(i,200,200);
+                canvas.drawLine(200, 0, 200, mMaxLineTop, mLinePaint);
+                canvas.drawText(String.valueOf(i/6),195,mMaxLineTop+15,mLinePaint);
+            }
+            canvas.restore();
+        }
     }
 
     private void drawbackTangle(Canvas canvas){
