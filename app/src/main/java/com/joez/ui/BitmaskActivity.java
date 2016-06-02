@@ -1,5 +1,6 @@
 package com.joez.ui;
 
+import android.os.Looper;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +49,14 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
+
+                Looper.loop();
+            }
+        });
         return true;
     }
 
