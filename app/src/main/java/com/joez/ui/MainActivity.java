@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
                 }else if(holder.getAdapterPosition()==1){
                     Intent intent = new Intent(MainActivity.this,BitmaskActivity.class);
                     startActivity(intent);
+                }else if(holder.getAdapterPosition() == 2){
+                    Intent intent = new Intent(MainActivity.this,CanvasTestActivity.class);
+                    startActivity(intent);
                 }
             }
 
