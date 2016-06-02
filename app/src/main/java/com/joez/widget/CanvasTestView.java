@@ -31,7 +31,7 @@ public class CanvasTestView extends View {
     private int mRulesBottom;
     private int mIntervalLine;
 
-    private Paint mLinePaint = new Paint();
+    private Paint mLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     public CanvasTestView(Context context) {
         this(context,null);
@@ -50,7 +50,7 @@ public class CanvasTestView extends View {
         mMiddleLineTop = DisplayUtil.dp2px(getContext(),mMiddleLineTop);
         mSmallLineTop = DisplayUtil.dp2px(getContext(),mSmallLineTop);
         mLinePaint.setColor(Color.RED);
-        mLinePaint.setStyle(Paint.Style.FILL);
+        mLinePaint.setStyle(Paint.Style.STROKE);
         mLinePaint.setStrokeWidth(2);
         mIntervalLine = DisplayUtil.dp2px(getContext(),INTERVAL_LINE);
     }
@@ -60,10 +60,35 @@ public class CanvasTestView extends View {
         super.draw(canvas);
         mRulesBottom = getHeight();
 //        drawLine(canvas);
+//        drawCenter(canvas);
+        drawbackTangle(canvas);
+    }
 
-//        canvas.drawColor(Color.BLUE);
-//        canvas.drawRect(new Rect(0, 0, 400, 400), mLinePaint);
-//        canvas.scale(0.5f, 0.5f,200,200);
+    private void drawClock(Canvas canvas){
+
+    }
+
+    private void drawbackTangle(Canvas canvas){
+
+        for(int index=0;index<10;index++) {
+            canvas.save();
+//            canvas.translate(200, 200);
+            float scale = ((float)index)/10;
+            canvas.scale(scale,scale,250,250);
+
+//            canvas.translate(250,250);
+            canvas.rotate(45,250,250);
+//            canvas.translate(-250,-250);
+            canvas.drawRect(new Rect(0,0,500,500),mLinePaint);
+
+            canvas.restore();
+
+        }
+
+    }
+
+    private void drawCenter(Canvas canvas){
+        canvas.save();
         mLinePaint.setColor(Color.YELLOW);
         canvas.drawRect(new Rect(0, 0, 400, 400), mLinePaint);
         canvas.translate(200, 200);
@@ -71,8 +96,8 @@ public class CanvasTestView extends View {
         canvas.translate(-200, -200);
         mLinePaint.setColor(Color.BLACK);
         canvas.drawRect(new Rect(0, 0, 400, 400), mLinePaint);
+        canvas.restore();
     }
-
     private void drawLine(Canvas canvas){
         canvas.save();
         canvas.translate(mRuleFirstLineMargin,0);
