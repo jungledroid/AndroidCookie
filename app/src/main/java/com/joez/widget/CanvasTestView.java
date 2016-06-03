@@ -7,8 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.TextView;
-
 import com.joez.utils.DisplayUtil;
 
 /**
@@ -50,7 +48,7 @@ public class CanvasTestView extends View {
         mMiddleLineTop = DisplayUtil.dp2px(getContext(),mMiddleLineTop);
         mSmallLineTop = DisplayUtil.dp2px(getContext(),mSmallLineTop);
         mLinePaint.setColor(Color.RED);
-        mLinePaint.setStyle(Paint.Style.STROKE);
+        mLinePaint.setStyle(Paint.Style.FILL);
         mLinePaint.setStrokeWidth(2);
         mIntervalLine = DisplayUtil.dp2px(getContext(),INTERVAL_LINE);
     }
@@ -62,7 +60,17 @@ public class CanvasTestView extends View {
 //        drawLine(canvas);
 //        drawCenter(canvas);
 //        drawbackTangle(canvas);
-        drawClock(canvas);
+//        drawClock(canvas);
+        skewCanvas(canvas);
+    }
+
+    private void skewCanvas(Canvas canvas){
+        canvas.drawColor(Color.BLUE);
+        canvas.drawRect(new Rect(0, 0, 400, 400), mLinePaint);
+//        canvas.skew(0, 1);
+        canvas.skew(1,0);
+        mLinePaint.setColor(0x8800ff00);
+        canvas.drawRect(new Rect(0, 0, 400, 400), mLinePaint);
     }
 
     private void drawClock(Canvas canvas){
@@ -85,7 +93,6 @@ public class CanvasTestView extends View {
 //            canvas.translate(200, 200);
             float scale = ((float)index)/10;
             canvas.scale(scale,scale,250,250);
-
 //            canvas.translate(250,250);
             canvas.rotate(45,250,250);
 //            canvas.translate(-250,-250);

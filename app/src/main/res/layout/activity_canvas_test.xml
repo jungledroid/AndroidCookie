@@ -10,9 +10,15 @@
     tools:context="com.joez.ui.CanvasTestActivity">
 
     <com.joez.widget.CanvasTestView
+        android:id="@+id/v_canvas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="200dp"
         android:textColor="@color/red"
         />
 
+    <com.joez.widget.PathTestView
+        android:id="@+id/v_path"
+        android:layout_below="@+id/v_canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </RelativeLayout>
