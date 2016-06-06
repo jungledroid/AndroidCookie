@@ -14,11 +14,18 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:textColor="@color/red"
+        android:visibility="gone"
         />
 
     <com.joez.widget.PathTestView
         android:id="@+id/v_path"
         android:layout_below="@+id/v_canvas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+    <com.joez.widget.FloatStarsView
+        android:id="@+id/fsv_stars"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 </RelativeLayout>

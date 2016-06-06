@@ -16,14 +16,14 @@ public class CanvasTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_canvas_test);
-        mCanvasTestView = (CanvasTestView)findViewById(R.id.v_canvas);
-        mPathTestView = (PathTestView)findViewById(R.id.v_path);
-        mCanvasTestView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPathTestView.startAnimation();
-            }
-        });
+//        mCanvasTestView = (CanvasTestView)findViewById(R.id.v_canvas);
+//        mPathTestView = (PathTestView)findViewById(R.id.v_path);
+//        mCanvasTestView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mPathTestView.startAnimation();
+//            }
+//        });
 
 
     }
