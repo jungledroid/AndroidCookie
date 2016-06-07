@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.joez.widget.CanvasTestView;
+import com.joez.widget.FloatStarsView;
 import com.joez.widget.PathTestView;
 
 public class CanvasTestActivity extends AppCompatActivity {
 
     CanvasTestView mCanvasTestView;
     PathTestView mPathTestView;
+    FloatStarsView mStarView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,12 @@ public class CanvasTestActivity extends AppCompatActivity {
 //            }
 //        });
 
+        mStarView=(FloatStarsView) findViewById(R.id.fsv_stars);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mStarView.startAnimation();
     }
 }
