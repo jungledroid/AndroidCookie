@@ -9,16 +9,16 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 
+import com.joez.ui.BaseCookieActicity;
 import com.joez.ui.R;
 
-public class KeyBoardActivity extends AppCompatActivity {
+public class KeyBoardActivity extends BaseCookieActicity {
     private static final String TAG = "KeyBoardActivity";
     private static final int MINI_KEY_BOARD_HEIGHT = 150;
     private View mVHolder;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCookieCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_key_board);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(TAG);

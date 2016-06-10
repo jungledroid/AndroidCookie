@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import com.joez.presenter.AnimatePresenter;
 
-public class BitmaskActivity extends AppCompatActivity implements View.OnClickListener{
+public class BitmaskActivity extends BaseCookieActicity implements View.OnClickListener{
     private static final String TAG = "BitmaskActivity";
     private static final String MODE_SINGLE="SingleMode";
     private static final String MODE_MULTI = "MultiMode";
@@ -20,8 +20,7 @@ public class BitmaskActivity extends AppCompatActivity implements View.OnClickLi
     private Button mBtnRotation,mBtnTransitionY,mBtnTransitonX;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCookieCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_bitmask);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(TAG);
