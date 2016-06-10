@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.joez.ui.CanvasTestActivity">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        />
+    <com.joez.widget.CanvasTestView
+        android:id="@+id/v_canvas"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        />
+
+    <com.joez.widget.PathTestView
+        android:id="@+id/v_path"
+        android:layout_below="@+id/v_canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+    <com.joez.widget.FloatStarsView
+        android:id="@+id/fsv_stars"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+</RelativeLayout>

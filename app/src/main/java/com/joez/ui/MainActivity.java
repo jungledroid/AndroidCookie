@@ -1,6 +1,7 @@
 package com.joez.ui;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +11,7 @@ import android.util.Log;
 import com.joez.ui.keyboard.KeyBoardActivity;
 import com.joez.utils.OnRecyclerItemListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseCookieActicity {
     private static final String TAG = "MainActivity";
 
     private RecyclerView mRvCookie;
@@ -21,10 +22,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCookieCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
-        mRvCookie = (RecyclerView) findViewById(R.id.rv_cookie);
+        mRvCookie = (RecyclerView) findViewById(R.id.rv_cookies);
         mRvCookie.setLayoutManager(new LinearLayoutManager(this));
         mRvCookie.setAdapter(new CookieAdapter());
         mRvCookie.addOnItemTouchListener(new OnRecyclerItemListener(mRvCookie) {
@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else if(holder.getAdapterPosition()==1){
                     Intent intent = new Intent(MainActivity.this,BitmaskActivity.class);
+                    startActivity(intent);
+                }else if(holder.getAdapterPosition() == 2){
+                    Intent intent = new Intent(MainActivity.this,CanvasTestActivity.class);
                     startActivity(intent);
                 }
             }

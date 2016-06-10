@@ -18,6 +18,7 @@ public class CookieAdapter extends RecyclerView.Adapter{
         mCookies = new ArrayList<>();
         mCookies.add("KeyBoard research");
         mCookies.add("use Bit Mask");
+        mCookies.add("Canvas test");
     }
 
     public CookieAdapter(){
