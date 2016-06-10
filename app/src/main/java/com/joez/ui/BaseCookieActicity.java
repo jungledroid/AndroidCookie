@@ -34,7 +34,7 @@ public class BaseCookieActicity extends AppCompatActivity{
 
             @Override
             public WindowInsetsCompat onApplyWindowInsets(View v, WindowInsetsCompat insets) {
-                v.setPadding(0,v.getTop()+ SystemBarHelper.getStatusBarHeight(BaseCookieActicity.this),0,v.getBottom());
+                v.setPadding(0,v.getTop()+ SystemBarHelper.getStatusBarHeight(BaseCookieActicity.this),0,0);
                 return insets.consumeSystemWindowInsets();
             }
         });

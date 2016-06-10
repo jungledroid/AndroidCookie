@@ -8,9 +8,9 @@
     </style>
     <style name="AppTheme" parent="AppTheme.Base">
         <!--透明状态栏-->
-        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <!--透明导航栏-->
-        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
         <!--使状态栏，导航栏可绘制-->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>

@@ -41,6 +41,7 @@ public class SystemBarHelper {
                 ViewGroup contentView = (ViewGroup) activity.getWindow().getDecorView().findViewById(Window.ID_ANDROID_CONTENT);
                 contentView.addView(statuBiew,lp);
             }else{
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
                 statuBiew.setBackgroundColor(statusBarColor);
             }
             setTranslucentView(activity.getWindow());
