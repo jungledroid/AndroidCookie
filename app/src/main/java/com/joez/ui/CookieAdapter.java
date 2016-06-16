@@ -14,15 +14,16 @@ import java.util.List;
  */
 public class CookieAdapter extends RecyclerView.Adapter{
     private static List<String> mCookies = null;
-    static {
-        mCookies = new ArrayList<>();
-        mCookies.add("KeyBoard research");
-        mCookies.add("use Bit Mask");
-        mCookies.add("Canvas test");
+
+    public CookieAdapter(List<String> list){
+        mCookies = list;
     }
 
-    public CookieAdapter(){
-
+    public void updateData(List<String> cookieList){
+        if(cookieList != null){
+            mCookies = cookieList;
+            notifyDataSetChanged();
+        }
     }
 
     @Override

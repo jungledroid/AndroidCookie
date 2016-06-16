@@ -27,7 +27,9 @@ dependencies {
     compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     compile "com.google.guava:guava:$rootProject.ext.guavaVersion"
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknife"
+    compile "com.mcxiaoke.volley:library:$rootProject.ext.volley"
 
     // Dependencies for local unit tests
     testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    compile 'com.android.support:support-v4:23.4.0'
 }
