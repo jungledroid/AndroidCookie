@@ -1,13 +1,10 @@
 package com.joez.ui;
 
 import android.content.Intent;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-
 import com.joez.ui.keyboard.KeyBoardActivity;
 import com.joez.utils.OnRecyclerItemListener;
 
@@ -39,6 +36,8 @@ public class MainActivity extends BaseCookieActicity {
                 }else if(holder.getAdapterPosition() == 2){
                     Intent intent = new Intent(MainActivity.this,CanvasTestActivity.class);
                     startActivity(intent);
+                } else if (holder.getAdapterPosition() == 3) {
+                    startActivity(new Intent(MainActivity.this,Dagger2Aty.class));
                 }
             }
 

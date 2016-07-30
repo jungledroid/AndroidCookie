@@ -23,6 +23,9 @@
             android:name=".BitmaskActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CanvasTestActivity"></activity>
+        <activity
+            android:name=".Dagger2Aty"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -19,6 +19,7 @@ public class CookieAdapter extends RecyclerView.Adapter{
         mCookies.add("KeyBoard research");
         mCookies.add("use Bit Mask");
         mCookies.add("Canvas test");
+        mCookies.add("dagger2");
     }
 
     public CookieAdapter(){
