@@ -2,6 +2,8 @@ package com.joez.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.OnApplyWindowInsetsListener;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.WindowInsetsCompat;
@@ -10,12 +12,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import com.joez.presenter.Navigator;
 import com.joez.utils.SystemBarHelper;
 
 /**
  * Created by JoeZ on 2016/5/24.
  */
-public class BaseCookieActicity extends AppCompatActivity{
+public class BaseCookieActicity extends AppCompatActivity implements Navigator {
 
     private static final String TAG = "BaseCookieActicity";
 
@@ -43,5 +46,24 @@ public class BaseCookieActicity extends AppCompatActivity{
 
     protected void onCookieCreate(@Nullable Bundle savedInstanceState){
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        Log.e(TAG, "onBackPressed: count:"+count );
+        if(count==1){
+            this.finish();
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    public void addFragment(Fragment fragment) {
+        FragmentTransaction transition = getSupportFragmentManager().beginTransaction();
+        transition.add(R.id.content,fragment,fragment.getClass().getSimpleName());
+        transition.addToBackStack(null);
+        transition.commit();
     }
 }
