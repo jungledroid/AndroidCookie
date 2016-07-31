@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+
 import com.joez.presenter.MainFunctionPresenter;
 import com.joez.presenter.MainFunctionView;
 import com.joez.ui.keyboard.KeyBoardActivity;
@@ -33,6 +34,7 @@ public class MainActivity extends BaseCookieActicity implements MainFunctionView
             @Override
             public void onItemClick(RecyclerView.ViewHolder holder) {
                 MainActivity.this.onItemClick(holder);
+//                mCookies.add("dagger2");
             }
 
             @Override
@@ -59,6 +61,8 @@ public class MainActivity extends BaseCookieActicity implements MainFunctionView
         }else if(holder.getAdapterPosition() == 3){
             Intent intent = new Intent(MainActivity.this,HttpActivity.class);
             startActivity(intent);
+        }else if (holder.getAdapterPosition() == 4) {
+            startActivity(new Intent(MainActivity.this,Dagger2Aty.class));
         }
     }
 }

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -20,16 +21,21 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    // Dependencies for local unit tests
+    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     compile "com.google.guava:guava:$rootProject.ext.guavaVersion"
-    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife"
     compile "com.mcxiaoke.volley:library:$rootProject.ext.volley"
 
     // Dependencies for local unit tests
     testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
     compile 'com.android.support:support-v4:23.4.0'
+//    compile "com.jakewharton:butterknife:$rootProject.ext.butterknife"
+    provided "org.glassfish:javax.annotation:10.0-b28"
+    compile "com.google.dagger:dagger:2.6"
+    apt "com.google.dagger:dagger-compiler:2.6"
 }

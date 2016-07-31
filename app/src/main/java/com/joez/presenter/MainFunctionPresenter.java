@@ -33,6 +33,7 @@ public class MainFunctionPresenter extends BasePresenter{
         cookies.add("use Bit Mask");
         cookies.add("Canvas test");
         cookies.add("Volley");
+        cookies.add("dagger2");
         return  cookies;
     }
 

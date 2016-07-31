@@ -26,6 +26,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CanvasTestActivity" />
         <activity android:name=".HttpActivity"></activity>
+        <activity
+            android:name=".Dagger2Aty"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>
