@@ -10,7 +10,7 @@ public abstract class BasePresenter<T> {
     public BasePresenter(T view){
         mView = view;
     }
-    public void onDestory(){
+    public void onDetach(){
         mView = null;
     }
 }

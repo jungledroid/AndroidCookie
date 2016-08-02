@@ -10,4 +10,5 @@ import dagger.Component;
 @Component(modules = ActivityModule.class)
 public interface ActivityComponent {
     void inject(Dagger2Aty aty);
+
 }
