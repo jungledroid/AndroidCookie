@@ -1,4 +1,6 @@
-package com.joez.presenter;
+package com.joez.view;
+
+import com.joez.presenter.BasePresenter;
 
 /**
  * Created by Administrator on 2016/6/11 0011.

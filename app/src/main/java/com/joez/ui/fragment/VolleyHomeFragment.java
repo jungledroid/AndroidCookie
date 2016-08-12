@@ -15,7 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.joez.presenter.BasePresenter;
-import com.joez.presenter.HttpView;
+import com.joez.view.HttpView;
 import com.joez.presenter.Navigator;
 import com.joez.ui.CookieAdapter;
 import com.joez.ui.R;
@@ -45,7 +45,8 @@ public class VolleyHomeFragment extends BaseFragment implements HttpView {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mNavigator = (Navigator) getActivity();
-        mPresenter = new HttpPresenter(this);
+        mPresenter = new HttpPresenter();
+        mPresenter.attach(this);
 
     }
 
@@ -81,10 +82,16 @@ public class VolleyHomeFragment extends BaseFragment implements HttpView {
         });
     }
 
-    private static final class  HttpPresenter extends BasePresenter {
+    private static final class  HttpPresenter extends BasePresenter<HttpView> {
         private RequestQueue mRequestQueue;
-        public HttpPresenter(HttpView view) {
-            super(view);
+        public HttpPresenter() {
+
+
+        }
+
+        @Override
+        public void attach(HttpView view) {
+            super.attach(view);
             mRequestQueue = Volley.newRequestQueue(view.getContext());
         }
 

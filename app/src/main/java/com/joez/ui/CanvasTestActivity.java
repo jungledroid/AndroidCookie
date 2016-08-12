@@ -1,10 +1,6 @@
 package com.joez.ui;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowInsets;
-
 import com.joez.widget.CanvasTestView;
 import com.joez.widget.FloatStarsView;
 import com.joez.widget.PathTestView;

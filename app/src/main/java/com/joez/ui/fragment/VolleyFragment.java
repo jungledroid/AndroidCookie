@@ -33,8 +33,8 @@ public class VolleyFragment extends BaseFragment {
 
     private static final class Presenter extends BasePresenter{
 
-        public Presenter(Object view) {
-            super(view);
+        public Presenter() {
+
         }
     }
 }

@@ -7,7 +7,7 @@ package com.joez.presenter;
 public abstract class BasePresenter<T> {
     protected T mView;
 
-    public BasePresenter(T view){
+    public void attach(T view) {
         mView = view;
     }
     public void onDetach(){

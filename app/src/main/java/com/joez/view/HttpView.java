@@ -1,4 +1,4 @@
-package com.joez.presenter;
+package com.joez.view;
 
 import android.content.Context;
 

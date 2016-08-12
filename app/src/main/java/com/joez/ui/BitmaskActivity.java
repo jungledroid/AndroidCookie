@@ -43,6 +43,7 @@ public class BitmaskActivity extends BaseCookieActicity implements View.OnClickL
         mCbTransitionX = (CheckBox)findViewById(R.id.cb_transitionX);
 
         mAnimateController = new AnimatePresenter(findViewById(R.id.iv_image));
+
     }
 
     @Override

@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.joez.presenter.MainFunctionPresenter;
-import com.joez.presenter.MainFunctionView;
+import com.joez.view.MainFunctionView;
 import com.joez.ui.keyboard.KeyBoardActivity;
 import com.joez.utils.OnRecyclerItemListener;
 
@@ -25,8 +25,9 @@ public class MainActivity extends BaseCookieActicity implements MainFunctionView
     @Override
     protected void onCookieCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
-        mPresenter = new MainFunctionPresenter(this);
-        mPresenter.testVolley();
+        mPresenter = new MainFunctionPresenter();
+        mPresenter.attach(this);
+//        mPresenter.testVolley();
         mRvCookie = (RecyclerView) findViewById(R.id.rv_cookies);
         mRvCookie.setLayoutManager(new LinearLayoutManager(this));
         mRvCookie.setAdapter(new CookieAdapter(mPresenter.getFunctionList()));
@@ -63,6 +64,8 @@ public class MainActivity extends BaseCookieActicity implements MainFunctionView
             startActivity(intent);
         }else if (holder.getAdapterPosition() == 4) {
             startActivity(new Intent(MainActivity.this,Dagger2Aty.class));
+        } else if (holder.getAdapterPosition() == 5) {
+            startActivity(new Intent(MainActivity.this,RxJavaActivity.class));
         }
     }
 }

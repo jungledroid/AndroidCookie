@@ -8,9 +8,9 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.joez.view.MainFunctionView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,8 +23,8 @@ import java.util.Map;
 public class MainFunctionPresenter extends BasePresenter{
     private static final String TAG = "MainFunctionPresenter";
 
-    public MainFunctionPresenter(MainFunctionView view) {
-        super(view);
+    public MainFunctionPresenter() {
+
     }
 
     public List<String> getFunctionList(){
@@ -34,6 +34,7 @@ public class MainFunctionPresenter extends BasePresenter{
         cookies.add("Canvas test");
         cookies.add("Volley");
         cookies.add("dagger2");
+        cookies.add("rxJavaTest");
         return  cookies;
     }
 
